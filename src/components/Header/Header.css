@@ -1,0 +1,145 @@
+.header {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  overflow-x: auto;
+}
+
+.headerLeft {
+  position: relative;
+  background-color: #050505;
+  height: 100%;
+  flex: 0.55;
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  z-index: 100;
+  color: white;
+}
+
+.headerRight {
+  background: radial-gradient(transparent, black 80%),
+    url("https://images.pexels.com/photos/1235717/pexels-photo-1235717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 60%;
+  flex: 0.45;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.headerLeftText {
+  height: 100%;
+  text-align: start;
+  max-width: 70%;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.headerLeftText > h1 {
+  font-size: 60px;
+}
+
+.headerLeftText > span > h3 {
+  color: #773e2b;
+}
+.headerLeftText > span > h3 > span {
+  color: white;
+  padding: 0 20px;
+}
+
+.headerLeftButton {
+  margin-top: 50px;
+}
+
+.headerLeftButton > a {
+  color: white;
+  margin: 0 20px;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.headerLeftButton > a:hover {
+  background-color: white;
+  color: black;
+}
+
+@media all and (max-width: 1000px) {
+  .header {
+    flex-direction: column;
+    height: 100vh;
+  }
+  .headerRight {
+    width: 100vw;
+    height: 50%;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  .headerLeft {
+    position: absolute;
+    clip-path: polygon(0 35%, 51% 16%, 100% 35%, 100% 100%, 0% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 100vw;
+    height: 77%;
+    bottom: 0;
+  }
+  .headerLeftText {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding-bottom: 20px;
+  }
+
+  .headerLeftText > h1 {
+    font-size: 30px;
+    max-width: 400px;
+  }
+
+  .headerLeftText > h3 {
+    font-size: 15px;
+  }
+
+  .headerLeftText > span > h3 > span {
+    display: none;
+  }
+
+  .headerLeftButton {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .headerLeftButton > a:nth-child(2) {
+    margin-top: 10px;
+  }
+}
+
+@media all and (min-width: 700px) and (max-width: 1000px) {
+  .headerLeftText > span {
+    display: block;
+  }
+
+  .headerLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .headerLeftText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

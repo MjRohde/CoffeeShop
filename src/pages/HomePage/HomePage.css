@@ -1,0 +1,96 @@
+.businessInfo {
+  height: 100vh;
+  width: 100vw;
+  background: url("https://wallpaperforu.com/wp-content/uploads/2021/01/coffee-wallpaper-21010323345924-scaled.jpg");
+  background-size: cover;
+  position: relative;
+  color: white;
+}
+.businessInfoStill {
+  height: 100vh;
+  width: 100vw;
+  background: url("https://wallpaperforu.com/wp-content/uploads/2021/01/coffee-wallpaper-21010323345924-scaled.jpg");
+  background-size: cover;
+  position: relative;
+  color: white;
+  margin-top: 50px;
+}
+
+.infoText {
+  max-width: 400px;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  animation: fadeInFromLeft 3s;
+}
+
+.infoTextHidden {
+  display: none;
+}
+
+.infoText > span {
+  text-align: start;
+  margin: 50px 0;
+}
+
+.infoText > span > p > a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+}
+.infoText > span > p > a:hover {
+  border-bottom: 2px solid white;
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    transform: translate(200%, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.dispNone {
+  display: none;
+}
+
+.popularProducts {
+  background: #040404;
+  height: 40vh;
+  width: 100vw;
+  color: white;
+  overflow-x: visible;
+  padding: 5px 0;
+}
+
+.popularProducts > h1 {
+  text-shadow: 0 0 5px #773e2b;
+}
+.popularProducts > div {
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customersChoice {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.imgLeftChoice {
+  width: 80vw;
+  height: 100vh;
+}
+
+.imgLeftChoice > img {
+  width: 100%;
+  height: 100%;
+}

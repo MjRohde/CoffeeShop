@@ -1,0 +1,64 @@
+.container {
+  position: absolute;
+  min-height: 200px;
+  min-width: 100vw;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  text-align: start;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.button {
+  height: 30%;
+  position: relative;
+}
+.buttonLink {
+  border-radius: 30px;
+  background-color: transparent;
+  border: 3px solid #000;
+  text-decoration: none;
+  color: black;
+  padding: 10px 70px;
+  bottom: 0;
+}
+
+.buttonLink:hover {
+  background: black;
+  color: white;
+}
+
+.titleHorizontal {
+  flex: 0.5;
+  text-align: start;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 300px;
+}
+.descText {
+  flex: 0.5;
+  text-align: start;
+  padding-top: 20px;
+  padding-right: 300px;
+}
+
+@media all and (max-width: 699px) {
+  .container {
+    display: block;
+    text-align: start;
+    max-height: 400px;
+  }
+
+  .titleHorizontal {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding-left: 5px;
+    line-height: 2em;
+  }
+}
