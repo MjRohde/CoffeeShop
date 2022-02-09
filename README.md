@@ -1,6 +1,6 @@
 # CoffeeShop
 
-This project is for practice, and even more important, for fun. (Unfinished).
+This project is for practice, and even more important, for fun. (Still working on this project).
 
 Future plans for the website is to implement a page with options for the customers, and a page for payment. 
 
