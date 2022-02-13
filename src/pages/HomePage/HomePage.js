@@ -71,9 +71,15 @@ function HomePage() {
       </section>
       <section className={mobile ? "infoTextHidden" : "popularProducts"}>
         <h1>Popular Products</h1>
-        <div>
+        <div className="slides">
           {popCoffee.map((item) => {
-            return <Card key={item.product} products={item} />;
+            return (
+              <Card
+                key={item.product}
+                products={item}
+                style={{ margin: "0 50px" }}
+              />
+            );
           })}
         </div>
       </section>

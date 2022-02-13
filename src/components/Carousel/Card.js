@@ -8,7 +8,7 @@ function Card({ products }) {
       className="card"
       style={{
         backgroundImage: `url(${image})`,
-        backgrondSize: "contain",
+        backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
       }}

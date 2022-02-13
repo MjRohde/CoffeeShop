@@ -5,6 +5,7 @@
   border: 1px solid black;
   box-shadow: 0 0 5px 5px #101010;
   border-radius: 20px;
+  z-index: 100;
 }
 .card:hover {
   transform: scale(1.2);

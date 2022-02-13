@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  align-items: center;
+}
+.page-link {
+  background: transparent;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.active,
+.page-link:hover {
+  background: rgba(119, 62, 43, 0.5);
+  color: white;
+  text-decoration: none;
+}
+
+.arrrow {
+  color: rgba(119, 62, 43, 0.5);
+}
+
+.nextPrev {
+  text-decoration: none;
+  color: white;
+  margin: 0 5px;
+}
+
+.nextPrev:hover {
+  color: #773e2b;
+}

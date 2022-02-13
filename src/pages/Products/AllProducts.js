@@ -5,6 +5,7 @@ import Card from "../../components/Carousel/Card";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SearchIcon from "@mui/icons-material/Search";
+import Pagination from "../../components/Pagination/Pagination";
 
 function AllProducts() {
   const [hover, setHover] = useState({
@@ -20,6 +21,10 @@ function AllProducts() {
   const [showChecks, setShowChecks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [prodPerPage, setProdPerPage] = useState(9);
 
   function getProducts() {
     axios.get("http://localhost:8080/allProducts").then((res) => {
@@ -68,11 +73,22 @@ function AllProducts() {
     }
   }
 
+  function paginate(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+
   useEffect(() => {
     getProducts();
     getUniqueNames();
     getPrices();
   }, []);
+
+  const indexOfLastProduct = currentPage * prodPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - prodPerPage;
+  const currentProducts = filterProd.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
   return (
     <div>
       <section className="allCoffees">
@@ -189,9 +205,22 @@ function AllProducts() {
                 onClick={() => setShowSearch(!showSearch)}
               />
             </div>
-            {filterProd.map((item) => {
+            {currentProducts.map((item) => {
               return <Card products={item} />;
             })}
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Pagination
+                productsPerPage={prodPerPage}
+                totalProducts={filterProd.length}
+                paginate={paginate}
+              />
+            </div>
           </span>
         </span>
       </section>

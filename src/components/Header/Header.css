@@ -42,8 +42,20 @@
   align-items: start;
 }
 
+@keyframes headerTitle {
+  0%,
+  20% {
+    font-size: 1.2rem;
+    color: firebrick;
+  }
+  100% {
+    font-size: 3rem;
+    color: steelblue;
+  }
+}
+
 .headerLeftText > h1 {
-  font-size: 60px;
+  --tt-key: headerTitle;
 }
 
 .headerLeftText > span > h3 {
