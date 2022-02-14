@@ -26,12 +26,14 @@ function AllProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [prodPerPage, setProdPerPage] = useState(9);
 
-  function getProducts() {
-    axios.get("http://localhost:8080/allProducts").then((res) => {
-      setProducts(res.data);
-      setFilterProd(res.data);
-    });
-  }
+  const getProducts = async () => {
+    setLoading(true);
+    const res = await axios.get("http://localhost:8080/allProducts");
+    setProducts(res.data);
+    setFilterProd(res.data);
+    setLoading(false);
+    console.log(loading);
+  };
 
   function getPrices() {
     axios.get("http://localhost:8080/getPrices").then((res) => {
@@ -205,6 +207,13 @@ function AllProducts() {
                 onClick={() => setShowSearch(!showSearch)}
               />
             </div>
+            {loading && (
+              <div className="dots">
+                <div className="dot first"></div>
+                <div className="dot second"></div>
+                <div className="dot third"></div>
+              </div>
+            )}
             {currentProducts.map((item) => {
               return <Card products={item} />;
             })}
