@@ -4,6 +4,7 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
+  const [active, setActive] = useState(1);
   const [hover, setHover] = useState({
     left: false,
     right: false,
@@ -13,8 +14,9 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     pageNumbers.push(i);
   }
 
-  function handlePagination(number) {
+  function handlePagination(number, listItem) {
     paginate(number);
+    setActive(number);
   }
 
   return (
@@ -29,7 +31,10 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
         {pageNumbers.map((number) => {
           return (
             <li key={number} className="page-item">
-              <a className="page-link" onClick={() => handlePagination(number)}>
+              <a
+                className={active == number ? "page-link active" : "page-link"}
+                onClick={(e) => handlePagination(number, e.target)}
+              >
                 {number}
               </a>
             </li>
@@ -40,7 +45,6 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
           onMouseEnter={() => setHover({ right: true })}
           onMouseLeave={() => setHover({ right: false })}
           style={{ color: hover.right ? "rgba(119, 62, 43, 0.5)" : "white" }}
-          onClick={() => paginate()}
         />
       </ul>
     </nav>

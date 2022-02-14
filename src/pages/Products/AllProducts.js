@@ -129,11 +129,12 @@ function AllProducts() {
                     className="check"
                     type="checkbox"
                     value={item}
+                    key={item.id}
                     onChange={(e) =>
                       filterProducts(e.target.checked, e.target.value)
                     }
                   />
-                  <label for="check">{item}</label>
+                  <label htmlFor="check">{item}</label>
                 </div>
               );
             })}
@@ -172,11 +173,14 @@ function AllProducts() {
                       className="check"
                       type="checkbox"
                       value={parseFloat(item).toFixed(2)}
+                      key={item.id}
                       onChange={(e) =>
                         filterByPrice(e.target.checked, e.target.value)
                       }
                     />
-                    <label for="check">{parseFloat(item).toFixed(2)}$</label>
+                    <label htmlFor="check">
+                      {parseFloat(item).toFixed(2)}$
+                    </label>
                   </div>
                 );
               })}
@@ -215,7 +219,7 @@ function AllProducts() {
               </div>
             )}
             {currentProducts.map((item) => {
-              return <Card products={item} />;
+              return <Card key={item.id} products={item} />;
             })}
             <div
               style={{

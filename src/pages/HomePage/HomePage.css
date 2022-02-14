@@ -62,16 +62,17 @@
 
 .popularProducts {
   background: #040404;
-  height: 40vh;
+  height: 70vh;
   width: 100vw;
   color: white;
   text-align: center;
-  padding-top: 10px;
   padding-bottom: 100px;
 }
 
 .popularProducts > h1 {
   text-shadow: 0 0 5px #773e2b;
+  margin: auto;
+  padding-top: 40px;
 }
 .slides {
   height: 100%;
@@ -81,7 +82,7 @@
   -webkit-overflow-scrolling: touch;
   margin: auto;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   scrollbar-color: dark;
 }
