@@ -26,7 +26,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
         <IconButton
           className="arrowLeft"
           disabled={active <= 1 ? true : false}
-          onClick={(e) => handlePagination(active - 1)}
+          onClick={() => handlePagination(active - 1)}
         >
           <ArrowLeftIcon
             fontSize="large"
@@ -46,8 +46,8 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
           return (
             <li key={number} className="page-item">
               <a
-                className={active == number ? "page-link active" : "page-link"}
-                onClick={(e) => handlePagination(number)}
+                className={active === number ? "page-link active" : "page-link"}
+                onClick={() => handlePagination(number)}
               >
                 {number}
               </a>
@@ -56,8 +56,8 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
         })}
         <IconButton
           className="arrowRight"
-          disabled={active == pageNumbers.length ? true : false}
-          onClick={(e) => handlePagination(active + 1)}
+          disabled={active === pageNumbers.length ? true : false}
+          onClick={() => handlePagination(active + 1)}
         >
           <ArrowRightIcon
             fontSize="large"
@@ -66,7 +66,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
             style={{
               color: hover.right
                 ? "rgba(119, 62, 43, 0.5)"
-                : "white" && active == pageNumbers.length
+                : "white" && active === pageNumbers.length
                 ? "grey"
                 : "white",
             }}

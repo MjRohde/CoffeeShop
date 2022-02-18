@@ -1,3 +1,6 @@
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+
 .businessInfo {
   height: 100vh;
   width: 100vw;
@@ -63,28 +66,24 @@
 .popularProducts {
   background: #040404;
   height: 70vh;
-  width: 100vw;
-  color: white;
-  text-align: center;
-  padding-bottom: 100px;
+}
+
+.media-scroller {
+  --spacer: var(--size-3);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 31%;
+
+  padding: var(--spacer);
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
 }
 
 .popularProducts > h1 {
   text-shadow: 0 0 5px #773e2b;
   margin: auto;
   padding-top: 40px;
-}
-.slides {
-  height: 100%;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  scrollbar-color: dark;
 }
 
 .customersChoice {
@@ -100,4 +99,18 @@
 .imgLeftChoice > img {
   width: 100%;
   height: 100%;
+}
+
+@media all and (min-width: 699px) and (max-width: 1100px) {
+  .media-scroller {
+    gap: var(--size-6);
+  }
+}
+
+@media all and (max-width: 699px) {
+  .media-scroller {
+    gap: var(--size-14);
+    padding-left: 30px;
+    padding-right: 40px;
+  }
 }

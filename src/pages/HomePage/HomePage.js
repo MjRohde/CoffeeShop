@@ -69,16 +69,14 @@ function HomePage() {
           </span>
         </span>
       </section>
-      <section className={mobile ? "infoTextHidden" : "popularProducts"}>
+      <section className="popularProducts">
         <h1>Popular Products</h1>
-        <div className="slides">
+        <div className="media-scroller">
           {popCoffee.map((item) => {
             return (
-              <Card
-                key={item.id}
-                products={item}
-                style={{ margin: "0 50px" }}
-              />
+              <div className={"media-element"}>
+                <Card key={item.id} products={item} />
+              </div>
             );
           })}
         </div>
