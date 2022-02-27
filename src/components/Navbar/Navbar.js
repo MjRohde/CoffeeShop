@@ -5,9 +5,15 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const [active, setActive] = useState("");
+
+  let pathname = window.location.pathname;
 
   const width = window.innerWidth;
-  console.log(window.innerWidth);
+
+  useEffect(() => {
+    setActive(pathname);
+  }, []);
 
   return (
     <div>
@@ -25,7 +31,7 @@ function Navbar() {
         />
       ) : null}
 
-      <span
+      <div
         className={width < 1000 ? "navbar-mobile" : "navbar"}
         style={{
           width: width < 1000 ? (showMenu ? "100vw" : 0) : "50%",
@@ -39,10 +45,19 @@ function Navbar() {
             fontSize="large"
           />
         ) : null}
-        <a href="/">Home</a>
-        <a href="/allCoffees">Products</a>
-        <a href="/">Order</a>
-      </span>
+        <a href="/" className={active === "/" ? "active" : null}>
+          Home
+        </a>
+        <a
+          href="/allCoffees"
+          className={active === "/allCoffees" ? "active" : null}
+        >
+          Products
+        </a>
+        <a href="/" className={active === "/order" ? "active" : null}>
+          Order
+        </a>
+      </div>
     </div>
   );
 }

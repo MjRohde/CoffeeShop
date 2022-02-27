@@ -15,7 +15,7 @@ function HomePage() {
   const [mobile, setMobile] = useState(false);
 
   const height = window.innerHeight;
-  const width = window.innerWidth;
+  let width = window.innerWidth;
 
   function checkIfInView() {
     if (window.pageYOffset > height / 100 && window.pageYOffset < 2 * height) {
@@ -41,11 +41,14 @@ function HomePage() {
 
   useEffect(() => {
     getPopCoffee();
+  }, []);
+
+  useEffect(() => {
     checkScreenWidth();
     window.addEventListener("scroll", checkIfInView);
 
     return () => window.removeEventListener("scroll", checkIfInView);
-  }, []);
+  }, [width]);
 
   return (
     <div>

@@ -1,0 +1,23 @@
+.productContainer {
+  background: #040404;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.productImage {
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  clip-path: polygon(0 0, 100% 0, 100% 39%, 50% 80%, 0% 38%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.productImage > h1 {
+  font-size: 70px;
+}
+
+.product {
+  width: 80%;
+  margin: auto;
+}

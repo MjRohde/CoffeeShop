@@ -2,7 +2,7 @@ import React from "react";
 import "./Card.css";
 
 function Card({ products }) {
-  let { name, brand, image, price } = products;
+  let { name, brand, image, price, type } = products;
   return (
     <div
       className="card"
@@ -15,7 +15,8 @@ function Card({ products }) {
     >
       <div className="cardImage"></div>
       <div className="cardText">
-        <h1>{name}</h1>
+        <h1>{type}</h1>
+        <h2>{name}</h2>
         <h2>Brand: {brand}</h2>
         <h3>Price: {parseFloat(price).toFixed(2)}$</h3>
       </div>

@@ -30,9 +30,7 @@ function AllProducts() {
     setLoading(true);
     const res = await axios.get("http://localhost:8080/allProducts");
     setProducts(res.data);
-    setFilterProd(res.data);
     setLoading(false);
-    console.log(loading);
   };
 
   function getPrices() {
@@ -49,7 +47,7 @@ function AllProducts() {
   function filterProducts(checkBox, checkBoxValue) {
     if (checkBox === true) {
       const tempFilteredProds = products.filter((product) => {
-        return product.name.includes(checkBoxValue);
+        return product.type.includes(checkBoxValue);
       });
       setFilterProd(tempFilteredProds);
     } else {
@@ -59,7 +57,10 @@ function AllProducts() {
 
   function searchFilterProducts(searchEntry) {
     const tempFilteredProds = products.filter((product) => {
-      return product.name.toLowerCase().includes(searchEntry.toLowerCase());
+      return (
+        product.type.toLowerCase().includes(searchEntry.toLowerCase()) ||
+        product.name.toLowerCase().includes(searchEntry.toLowerCase())
+      );
     });
     setFilterProd(tempFilteredProds);
   }
@@ -87,10 +88,10 @@ function AllProducts() {
 
   const indexOfLastProduct = currentPage * prodPerPage;
   const indexOfFirstProduct = indexOfLastProduct - prodPerPage;
-  const currentProducts = filterProd.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts =
+    filterProd.length > 0
+      ? filterProd.slice(indexOfFirstProduct, indexOfLastProduct)
+      : products.slice(indexOfFirstProduct, indexOfLastProduct);
   return (
     <div>
       <section className="allCoffees">
@@ -130,6 +131,7 @@ function AllProducts() {
                     type="checkbox"
                     value={item}
                     key={item.id}
+                    style={{ marginLeft: "5px" }}
                     onChange={(e) =>
                       filterProducts(e.target.checked, e.target.value)
                     }
@@ -174,6 +176,7 @@ function AllProducts() {
                       type="checkbox"
                       value={parseFloat(item).toFixed(2)}
                       key={item.id}
+                      style={{ marginLeft: "5px" }}
                       onChange={(e) =>
                         filterByPrice(e.target.checked, e.target.value)
                       }
@@ -195,11 +198,14 @@ function AllProducts() {
                 onChange={(e) => searchFilterProducts(e.target.value)}
                 style={{
                   display: showSearch ? "block" : "none",
+                  marginTop: "30px",
+                  padding: "10px",
                 }}
               />
               <SearchIcon
                 style={{
                   marginRight: "50px",
+                  marginTop: "30px",
                   fontSize: "50px",
                   backgroundColor: hover.filter
                     ? "rgba(255,255,255,0.4)"
@@ -219,7 +225,11 @@ function AllProducts() {
               </div>
             )}
             {currentProducts.map((item) => {
-              return <Card key={item.id} products={item} />;
+              return (
+                <a href={`/products/${item.name}`}>
+                  <Card key={item.id} products={item} />
+                </a>
+              );
             })}
             <div
               style={{

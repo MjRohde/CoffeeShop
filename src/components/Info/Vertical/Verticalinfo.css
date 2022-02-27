@@ -1,6 +1,7 @@
 .containerVertical {
   flex: 0.2;
-  background: white;
+  background: #040404;
+  color: white;
   height: 100vh;
   text-align: start;
   padding: 50px 40px;
@@ -20,14 +21,18 @@
   position: absolute;
   border-radius: 30px;
   background-color: transparent;
-  border: 3px solid #000;
+  border: 3px solid white;
   text-decoration: none;
-  color: black;
+  color: white;
   padding: 10px 70px;
   bottom: 0;
 }
 
-.buttonLink:hover {
-  background: black;
-  color: white;
+.buttonVerticalLink:hover {
+  background: white;
+  color: black;
+}
+
+.buttonVerticalLink:focus {
+  padding: 7px 60px;
 }
