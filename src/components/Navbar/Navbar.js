@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Login from "../Login/Login";
 
 function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [active, setActive] = useState("");
+  const [open, setOpen] = useState(false);
 
   let pathname = window.location.pathname;
 
   const width = window.innerWidth;
+
+  function handlePopUp() {
+    setOpen(!open);
+  }
 
   useEffect(() => {
     setActive(pathname);
@@ -57,6 +63,13 @@ function Navbar() {
         <a href="/" className={active === "/order" ? "active" : null}>
           Order
         </a>
+        <a
+          className={active === "/order" ? "active" : null}
+          onClick={() => handlePopUp()}
+        >
+          Login
+        </a>
+        <Login isOpen={open} handleClose={setOpen} />
       </div>
     </div>
   );
