@@ -5,8 +5,10 @@ import axios from "axios";
 
 function Product() {
   const [product, setProduct] = useState({});
+  //Uses the url parameter to get the name of the product that should be displayed.
   let { name } = useParams();
 
+  //Uses the params to send the name of the product. The backend then returns the product.
   const loadProduct = async (name) => {
     axios.get("http://localhost:8080/getCoffee/" + name).then((response) => {
       setProduct(response.data[0]);

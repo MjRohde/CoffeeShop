@@ -2,6 +2,7 @@ import React from "react";
 import "./Card.css";
 
 function Card({ products }) {
+  //Gets all information available about a specific product
   let { name, brand, image, price, type } = products;
   return (
     <div

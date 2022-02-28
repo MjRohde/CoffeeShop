@@ -11,10 +11,12 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     right: false,
   });
   const pageNumbers = [];
+  /** A loop to calculate the number of pagenumbers that should be displayed in the Pagination component */
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
   }
 
+  /* Paginate is a callback function from AllProducts, the function sets the current active page*/
   function handlePagination(number) {
     setActive(number);
     paginate(number);

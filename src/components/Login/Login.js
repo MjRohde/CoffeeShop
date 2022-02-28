@@ -8,6 +8,7 @@ function Login({ isOpen, handleClose }) {
   const [password, setPassword] = useState("");
   const [passwordStrength, setPasswordStrength] = useState(0);
 
+  /* Function to check the strength of the password based on the length og the password entered*/
   function checkPasswordStrength(password) {
     if (password.length < 4) {
       setPasswordStrength(1);
@@ -19,6 +20,8 @@ function Login({ isOpen, handleClose }) {
     setPassword(password);
   }
 
+  //Sends username and password to backend, and backend returns with the user matching the username and password.
+  //localStorage used to keep user logged in between sessions. Window is reloaded to ensure the needed change in the navbar
   const login = async () => {
     const requestOptions = {
       method: "POST",
@@ -29,10 +32,10 @@ function Login({ isOpen, handleClose }) {
     };
     axios("http://localhost:8080/login", requestOptions).then((resp) => {
       handleClose(false);
+      localStorage.setItem("username", resp.data[0].username);
+      window.location.reload();
     });
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div className="LoginWrapper">
@@ -52,6 +55,8 @@ function Login({ isOpen, handleClose }) {
               type="password"
               className="input password"
             />
+            {/* The passwordSbar will display the strength of the password entered, Right now it only checks the password
+             based on length, but could easily be scaled to check for capital letters and/or symbols*/}
             <div className="passwordSbar">
               <div
                 className="bad"

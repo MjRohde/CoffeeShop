@@ -17,6 +17,9 @@ function HomePage() {
   const height = window.innerHeight;
   let width = window.innerWidth;
 
+  /** A function to check if a part of the website which contains an animatin is in view. If the container is in view
+   * the animation will be replayed.
+   */
   function checkIfInView() {
     if (window.pageYOffset > height / 100 && window.pageYOffset < 2 * height) {
       setAnimation({
@@ -25,6 +28,7 @@ function HomePage() {
     }
   }
 
+  /** Small function to check the with of the device used */
   function checkScreenWidth() {
     if (width < 699) {
       setMobile(true);
@@ -33,6 +37,10 @@ function HomePage() {
     }
   }
 
+  /** Asks the backend for 4 coffees, as of now, the backend returns the first 4 in the database.
+   * This could be modified purely in the backend by keeping track of sales numbers, and then returning
+   * a list with the most sold products
+   */
   function getPopCoffee() {
     axios.get("http://localhost:8080/popularCoffees").then((res) => {
       setPopCoffee(res.data);
@@ -88,6 +96,9 @@ function HomePage() {
         <span className="imgLeftChoice">
           <img src="https://m.media-amazon.com/images/I/81DLJc5I5XL._SL1280_.jpg" />
         </span>
+        {/** Changes whether the info should be displayed with a vertical div on the right or
+         * a horizontal div on the bottom of the container
+         */}
         {mobile ? (
           <HorizontalInfo
             title="Coffee type"
