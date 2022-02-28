@@ -4,9 +4,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Draggable from "react-draggable";
+import CloseIcon from "@mui/icons-material/Close";
+import { Input } from "@mui/material";
 
 function Product() {
   const [product, setProduct] = useState({});
+  const [shoppingVisible, setShoppingVisible] = useState(false);
+  const [click, setClick] = useState(false);
   //Uses the url parameter to get the name of the product that should be displayed.
   let { name } = useParams();
 
@@ -17,8 +21,36 @@ function Product() {
     });
   };
 
+  /** Function to check if shopping cart icon is clicked or dragged, important because the entire
+   * shopping cart should not be displayed when the icon is dragged.
+   */
+  function mouseIsDown() {
+    let sc = document.getElementById("shoppingCart");
+    let mouseDownTime;
+    sc.addEventListener("mousedown", () => {
+      mouseDownTime = new Date().getTime();
+    });
+
+    sc.addEventListener("mouseup", function () {
+      const mouseUpTime = new Date().getTime(),
+        timeDifference = mouseUpTime - mouseDownTime;
+      timeDifference < 300 ? setClick(true) : setClick(false);
+    });
+
+    sc.removeEventListener("mousedown", () => {
+      mouseDownTime = new Date().getTime();
+    });
+
+    sc.removeEventListener("mouseup", function () {
+      const mouseUpTime = new Date().getTime(),
+        timeDifference = mouseUpTime - mouseDownTime;
+      timeDifference < 300 ? setClick(true) : setClick(false);
+    });
+  }
+
   useEffect(() => {
     loadProduct(name);
+    mouseIsDown();
   }, []);
   return (
     <div className="productContainer">
@@ -32,12 +64,30 @@ function Product() {
       >
         <h1>{product.name}</h1>
       </header>
+      <div className="productDetails"></div>
       {/**Creates a draggable element in case it is in the way of any content the user want to see. */}
       <Draggable>
-        <div className="shoppingCart">
-          <ShoppingCartIcon fontSize="large" style={{ color: "white" }} />
+        <div className="shoppingCart" id="shoppingCart">
+          <ShoppingCartIcon
+            fontSize="large"
+            style={{ color: "white" }}
+            onClick={() => setShoppingVisible(!shoppingVisible)}
+          />
         </div>
       </Draggable>
+      {click && (
+        <div
+          className="shoppingCartContainer"
+          style={{ height: shoppingVisible ? "90vh" : "0", width: "100vw" }}
+        >
+          <CloseIcon
+            fontSize="large"
+            style={{ position: "absolute", top: "5%", right: "5%" }}
+            onClick={() => setShoppingVisible(false)}
+          />
+          {product.name}
+        </div>
+      )}
     </div>
   );
 }

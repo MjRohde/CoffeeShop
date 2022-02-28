@@ -23,6 +23,16 @@
   border-radius: 50%;
   box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
 }
+
+.shoppingCartContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #777;
+  transition: 0.8s;
+  z-index: 3;
+}
 .productImage > h1 {
   font-size: 70px;
 }
