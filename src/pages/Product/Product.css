@@ -13,6 +13,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.shoppingCart {
+  position: absolute;
+  cursor: move;
+  right: 2%;
+  top: 50%;
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+}
 .productImage > h1 {
   font-size: 70px;
 }

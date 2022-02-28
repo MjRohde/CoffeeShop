@@ -11,6 +11,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(false);
   const [login, setLogin] = useState(false);
+  const [display, setDisplay] = useState(false);
 
   let pathname = window.location.pathname;
 
@@ -73,7 +74,23 @@ function Navbar() {
           Order
         </a>
         {login ? (
-          <a className="user">{localStorage.getItem("username")}</a>
+          <div>
+            <a className="user" onClick={() => setDisplay(!display)}>
+              {localStorage.getItem("username")}
+            </a>
+            <div
+              style={{
+                display: display ? "flex" : "none",
+                flexDirection: "column",
+                textAlign: "start",
+                color: "white",
+                marginTop: "10px",
+              }}
+            >
+              <a>Log out</a>
+              <a>Delete User</a>
+            </div>
+          </div>
         ) : (
           <LoginIcon
             fontSize="large"

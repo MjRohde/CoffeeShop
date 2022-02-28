@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Product.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Draggable from "react-draggable";
 
 function Product() {
   const [product, setProduct] = useState({});
@@ -30,7 +32,12 @@ function Product() {
       >
         <h1>{product.name}</h1>
       </header>
-      <div className="product"></div>
+      {/**Creates a draggable element in case it is in the way of any content the user want to see. */}
+      <Draggable>
+        <div className="shoppingCart">
+          <ShoppingCartIcon fontSize="large" style={{ color: "white" }} />
+        </div>
+      </Draggable>
     </div>
   );
 }
