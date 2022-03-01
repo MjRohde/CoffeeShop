@@ -4,10 +4,6 @@
   min-height: 100vh;
   color: white;
 }
-
-.allCoffees > h1 {
-  font-size: 50px;
-}
 .selectionCoffees {
   display: flex;
 }
@@ -16,6 +12,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: white;
   margin-top: 60px;
 }
@@ -32,6 +29,7 @@
 .selectionCheck {
   color: white;
 }
+
 .filterButton {
   position: relative;
   text-align: start;
@@ -43,6 +41,11 @@
 .filterButtonArrow {
   position: absolute;
   right: 0;
+  margin-top: 10px;
+}
+
+.linkIndProduct {
+  text-decoration: none;
 }
 
 .filterChoice > input[type="checkbox"] {
@@ -126,9 +129,33 @@ input[type="checkbox"]:checked {
 
 @media all and (max-width: 699px) {
   .selection {
+    z-index: 1000;
     position: fixed;
-    top: 0;
-    left: 0;
+    width: 100%;
+    min-height: fit-content;
+    order: 2;
+  }
+  .coffees {
+    order: 1;
+  }
+  .filterOptions {
+    position: fixed;
+    bottom: 5%;
+  }
+  .filter {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+  }
+
+  .filterButton {
+    background-color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .filterButton > h3 {
+    color: black;
   }
 
   .coffees {

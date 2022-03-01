@@ -41,3 +41,22 @@
   width: 80%;
   margin: auto;
 }
+
+.cartItem {
+  width: 100%;
+  min-height: 10vh;
+  max-height: 20vh;
+  border-bottom: 1px solid black;
+  border-top: 2px solid black;
+  display: flex;
+}
+
+.cartItem > span {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+}
+
+.cartItem > span > img {
+  height: 100%;
+}

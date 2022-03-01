@@ -4,6 +4,7 @@ import axios from "axios";
 import Card from "../../components/Carousel/Card";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import SearchIcon from "@mui/icons-material/Search";
 import Pagination from "../../components/Pagination/Pagination";
 
@@ -18,6 +19,7 @@ function AllProducts() {
 
   const [uNames, setUNames] = useState([]);
 
+  const [showFilter, setShowFilter] = useState(false);
   const [showChecks, setShowChecks] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
@@ -30,6 +32,7 @@ function AllProducts() {
     setLoading(true);
     const res = await axios.get("http://localhost:8080/allProducts");
     setProducts(res.data);
+    setFilterProd(res.data);
     setLoading(false);
   };
 
@@ -97,98 +100,113 @@ function AllProducts() {
       <section className="allCoffees">
         <span className="selectionCoffees">
           <span className="selection">
-            <div
-              className="filterButton"
-              onClick={() => setShowChecks(!showChecks)}
-            >
-              <h3>
-                Coffees{" "}
-                {showChecks ? (
-                  <ArrowDropDownIcon className="filterButtonArrow" />
-                ) : (
-                  <ArrowRightIcon className="filterButtonArrow" />
-                )}
-              </h3>
-            </div>
-
-            {uNames.map((item) => {
-              return (
-                <div
-                  className="filterChoice"
-                  style={{
-                    display: showChecks ? "block" : "none",
-                    position: "relative",
-                    backgroundColor: "white",
-                    width: "300px",
-                    margin: "0 auto",
-                    borderBottom: "2px solid black",
-                    padding: "5px 0",
-                    color: "black",
-                  }}
-                >
-                  <input
-                    className="check"
-                    type="checkbox"
-                    value={item}
-                    key={item.id}
-                    style={{ marginLeft: "5px" }}
-                    onChange={(e) =>
-                      filterProducts(e.target.checked, e.target.value)
-                    }
-                  />
-                  <label htmlFor="check">{item}</label>
-                </div>
-              );
-            })}
-            <span>
-              <div
-                className="filterButton"
-                onClick={() => setShowPrice(!showPrice)}
-              >
+            <span className="filter" onClick={() => setShowFilter(!showFilter)}>
+              <div className="filterButton">
                 <h3>
-                  Price{" "}
-                  {showPrice ? (
-                    <ArrowDropDownIcon className="filterButtonArrow" />
+                  Filter
+                  {showFilter ? (
+                    <ArrowDropUpIcon className="filterButtonArrow" />
                   ) : (
                     <ArrowRightIcon className="filterButtonArrow" />
                   )}
                 </h3>
               </div>
-              {prices.map((item) => {
-                return (
-                  <div
-                    className={
-                      showPrice ? "filterChoice" : "filterChoiceClosed"
-                    }
-                    style={{
-                      display: showPrice ? "block" : "none",
-                      position: "relative",
-                      backgroundColor: "white",
-                      width: "300px",
-                      margin: "0 auto",
-                      borderBottom: "2px solid black",
-                      padding: "5px 0",
-                      color: "black",
-                    }}
-                  >
-                    <input
-                      className="check"
-                      type="checkbox"
-                      value={parseFloat(item).toFixed(2)}
-                      key={item.id}
-                      style={{ marginLeft: "5px" }}
-                      onChange={(e) =>
-                        filterByPrice(e.target.checked, e.target.value)
-                      }
-                    />
-                    <label htmlFor="check">
-                      {parseFloat(item).toFixed(2)}$
-                    </label>
-                  </div>
-                );
-              })}
             </span>
+            {showFilter && (
+              <span className="filterOptions">
+                <div
+                  className="filterButton unames"
+                  onClick={() => setShowChecks(!showChecks)}
+                >
+                  <h3>
+                    Coffees{" "}
+                    {showChecks ? (
+                      <ArrowDropDownIcon className="filterButtonArrow" />
+                    ) : (
+                      <ArrowRightIcon className="filterButtonArrow" />
+                    )}
+                  </h3>
+                </div>
+
+                {uNames.map((item) => {
+                  return (
+                    <div
+                      className="filterChoice"
+                      style={{
+                        display: showChecks ? "block" : "none",
+                        position: "relative",
+                        backgroundColor: "white",
+                        width: "300px",
+                        margin: "0 auto",
+                        borderBottom: "2px solid black",
+                        padding: "5px 0",
+                        color: "black",
+                      }}
+                    >
+                      <input
+                        className="check"
+                        type="checkbox"
+                        value={item}
+                        key={item.id}
+                        style={{ marginLeft: "5px" }}
+                        onChange={(e) =>
+                          filterProducts(e.target.checked, e.target.value)
+                        }
+                      />
+                      <label htmlFor="check">{item}</label>
+                    </div>
+                  );
+                })}
+                <span>
+                  <div
+                    className="filterButton price"
+                    onClick={() => setShowPrice(!showPrice)}
+                  >
+                    <h3>
+                      Price{" "}
+                      {showPrice ? (
+                        <ArrowDropDownIcon className="filterButtonArrow" />
+                      ) : (
+                        <ArrowRightIcon className="filterButtonArrow" />
+                      )}
+                    </h3>
+                  </div>
+                  {prices.map((item) => {
+                    return (
+                      <div
+                        className="filterChoice price"
+                        style={{
+                          display: showPrice ? "block" : "none",
+                          position: "relative",
+                          backgroundColor: "white",
+                          width: "300px",
+                          margin: "0 auto",
+                          borderBottom: "2px solid black",
+                          padding: "5px 0",
+                          color: "black",
+                        }}
+                      >
+                        <input
+                          className="check"
+                          type="checkbox"
+                          value={parseFloat(item).toFixed(2)}
+                          key={item.id}
+                          style={{ marginLeft: "5px" }}
+                          onChange={(e) =>
+                            filterByPrice(e.target.checked, e.target.value)
+                          }
+                        />
+                        <label htmlFor="check">
+                          {parseFloat(item).toFixed(2)}$
+                        </label>
+                      </div>
+                    );
+                  })}
+                </span>
+              </span>
+            )}
           </span>
+
           <span className="coffees">
             <div className="search">
               <input
@@ -203,8 +221,9 @@ function AllProducts() {
                 }}
               />
               <SearchIcon
+                className="searchIcon"
                 style={{
-                  marginRight: "50px",
+                  marginRight: "10px",
                   marginTop: "30px",
                   fontSize: "50px",
                   backgroundColor: hover.filter
@@ -226,7 +245,7 @@ function AllProducts() {
             )}
             {currentProducts.map((item) => {
               return (
-                <a href={`/products/${item.name}`}>
+                <a className="linkIndProduct" href={`/products/${item.name}`}>
                   <Card key={item.id} products={item} />
                 </a>
               );

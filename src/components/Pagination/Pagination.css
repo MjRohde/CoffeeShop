@@ -10,6 +10,10 @@
   transition: 0.5s;
 }
 
+.page-item {
+  color: white;
+}
+
 .page-link.active,
 .page-link:hover {
   background: rgba(119, 62, 43, 0.5);

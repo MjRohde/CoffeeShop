@@ -45,6 +45,7 @@ function Product() {
       const mouseUpTime = new Date().getTime(),
         timeDifference = mouseUpTime - mouseDownTime;
       timeDifference < 300 ? setClick(true) : setClick(false);
+      console.log(timeDifference);
     });
   }
 
@@ -85,7 +86,15 @@ function Product() {
             style={{ position: "absolute", top: "5%", right: "5%" }}
             onClick={() => setShoppingVisible(false)}
           />
-          {product.name}
+          <div className="cartItem">
+            <span>
+              <img src={product.image} />
+            </span>
+            <span>{product.type}</span>
+            <span>{product.name}</span>
+            <span>{product.brand}</span>
+            <span>{product.price}</span>
+          </div>
         </div>
       )}
     </div>

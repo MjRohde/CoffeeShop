@@ -12,10 +12,9 @@ function Navbar() {
   const [hover, setHover] = useState(false);
   const [login, setLogin] = useState(false);
   const [display, setDisplay] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
 
   let pathname = window.location.pathname;
-
-  const width = window.innerWidth;
 
   //Handles the pop up of log in window
   function handlePopUp() {
@@ -26,10 +25,20 @@ function Navbar() {
     localStorage.length == 1 ? setLogin(true) : setLogin(false);
   }
 
+  function setDimension() {
+    setWidth(window.innerWidth);
+  }
+
   useEffect(() => {
     setActive(pathname);
     checkLogin();
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", setDimension);
+
+    return () => window.removeEventListener("resize", setDimension);
+  }, [width]);
 
   return (
     <div>

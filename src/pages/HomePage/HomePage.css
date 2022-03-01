@@ -25,11 +25,13 @@
   top: 0;
   right: 10%;
   bottom: 0;
+  padding-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   animation: fadeInFromLeft 3s;
+  text-shadow: 0 0 5px #040404;
 }
 
 .infoTextHidden {

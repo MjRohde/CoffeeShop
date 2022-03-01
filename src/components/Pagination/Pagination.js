@@ -3,6 +3,7 @@ import "./Pagination.css";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import IconButton from "@mui/material/IconButton";
+import { useEffect } from "react";
 
 const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
   const [active, setActive] = useState(1);
