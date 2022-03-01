@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./Product.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Draggable from "react-draggable";
 import CloseIcon from "@mui/icons-material/Close";
-import { Input } from "@mui/material";
 
 function Product() {
   const [product, setProduct] = useState({});
   const [shoppingVisible, setShoppingVisible] = useState(false);
   const [click, setClick] = useState(false);
+  const [coffeeTypes, setCoffeeTypes] = useState([]);
+  const [cartItem, setCartItem] = useState([]);
+
+  const [type, setType] = useState("Coffee Bros.,Medium Roast");
+  const [size, setSize] = useState("Small");
+  const [quantity, setQuantity] = useState("1");
   //Uses the url parameter to get the name of the product that should be displayed.
   let { name } = useParams();
 
@@ -18,6 +23,12 @@ function Product() {
   const loadProduct = async (name) => {
     axios.get("http://localhost:8080/getCoffee/" + name).then((response) => {
       setProduct(response.data[0]);
+    });
+  };
+
+  const loadTypes = async () => {
+    axios.get("http://localhost:8080/allCoffeeTypes").then((response) => {
+      setCoffeeTypes(response.data);
     });
   };
 
@@ -49,9 +60,23 @@ function Product() {
     });
   }
 
+  function addToCart() {
+    let item = {
+      id: product.id,
+      product: product.name,
+      type: product.type,
+      image: product.image,
+      coffeeType: type,
+      size: size,
+      quantity: quantity,
+      price: product.price,
+    };
+    setCartItem([...cartItem, item]);
+  }
   useEffect(() => {
     loadProduct(name);
     mouseIsDown();
+    loadTypes();
   }, []);
   return (
     <div className="productContainer">
@@ -86,17 +111,80 @@ function Product() {
             style={{ position: "absolute", top: "5%", right: "5%" }}
             onClick={() => setShoppingVisible(false)}
           />
-          <div className="cartItem">
-            <span>
-              <img src={product.image} />
-            </span>
-            <span>{product.type}</span>
-            <span>{product.name}</span>
-            <span>{product.brand}</span>
-            <span>{product.price}</span>
-          </div>
+
+          {cartItem.map((item) => {
+            return (
+              <div className="cartItem">
+                <span>
+                  <img src={item.image} />
+                </span>
+                <span>{item.type}</span>
+                <span>{item.product}</span>
+                <span>{item.coffeeType}</span>
+                <span>{item.size}</span>
+                <span>{item.quantity}</span>
+                <span>{item.price}</span>
+              </div>
+            );
+          })}
         </div>
       )}
+      <div className="prodInfo">
+        <span className="prodInfoParts">
+          <h2>Type: {product.type}</h2>
+        </span>
+        <span className="prodInfoParts">
+          <h2>Choose Your Details:</h2>
+          <div className="prodInfoSelect">
+            <label htmlFor="types" className="prodInfoLabelTypes">
+              Choose the coffee beans:
+            </label>
+            <select
+              className="select types"
+              onChange={(e) => setType(e.target.value)}
+            >
+              {coffeeTypes.map((type) => {
+                return (
+                  <option key={type.id} className="typesOptions">
+                    {type.brand}, {type.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="prodInfoSelect">
+            <label htmlFor="size" className="prodInfoLabelTypes">
+              Size:
+            </label>
+            <select
+              className="select size"
+              onChange={(e) => setSize(e.target.value)}
+            >
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Big</option>
+            </select>
+          </div>
+          <div className="prodInfoSelect">
+            <label htmlFor="quantity" className="prodInfoLabelTypes">
+              Quantity:
+            </label>
+            <select
+              className="select quantity"
+              onChange={(e) => setQuantity(e.target.value)}
+            >
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </span>
+        <div className="prodInfoButton">
+          <button onClick={() => addToCart()}>Add to Cart</button>
+        </div>
+      </div>
     </div>
   );
 }

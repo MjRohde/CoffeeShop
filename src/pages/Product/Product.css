@@ -2,6 +2,7 @@
   background: #040404;
   width: 100vw;
   min-height: 100vh;
+  color: white;
 }
 
 .productImage {
@@ -32,6 +33,8 @@
   background: #777;
   transition: 0.8s;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
 }
 .productImage > h1 {
   font-size: 70px;
@@ -59,4 +62,42 @@
 
 .cartItem > span > img {
   height: 100%;
+}
+
+.prodInfo {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  min-height: 50vh;
+}
+.prodInfoParts {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.prodInfoSelect {
+  width: 100%;
+  padding: 20px 20px;
+  position: relative;
+}
+
+.select {
+  background: transparent;
+  border-bottom: 1px solid white;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.select:focus {
+  outline: none;
+}
+
+.prodInfoLabelTypes {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
 }
