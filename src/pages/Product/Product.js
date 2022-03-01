@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -11,7 +11,7 @@ function Product() {
   const [shoppingVisible, setShoppingVisible] = useState(false);
   const [click, setClick] = useState(false);
   const [coffeeTypes, setCoffeeTypes] = useState([]);
-  const [cartItem, setCartItem] = useState([]);
+  const [cartItem, setCartItem] = useLocalStorage("cart", []);
 
   const [type, setType] = useState("Coffee Bros.,Medium Roast");
   const [size, setSize] = useState("Small");
@@ -73,6 +73,40 @@ function Product() {
     };
     setCartItem([...cartItem, item]);
   }
+
+  function useLocalStorage(key, initialValue) {
+    const [storedValue, setStoredValue] = useState(() => {
+      if (typeof window === undefined) {
+        return initialValue;
+      }
+
+      try {
+        const item = window.localStorage.getItem(key);
+
+        return item ? JSON.parse(item) : initialValue;
+      } catch (error) {
+        console.log(error);
+        return initialValue;
+      }
+    });
+
+    const setValue = (value) => {
+      try {
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
+
+        setStoredValue(valueToStore);
+
+        if (typeof window !== "undefined") {
+          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    return [storedValue, setValue];
+  }
+
   useEffect(() => {
     loadProduct(name);
     mouseIsDown();
