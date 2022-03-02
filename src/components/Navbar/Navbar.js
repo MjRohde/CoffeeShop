@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Login from "../Login/Login";
 import LoginIcon from "@mui/icons-material/Login";
+import axios from "axios";
 
 function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -22,12 +23,31 @@ function Navbar() {
   }
   //Ensures that a user does not have to login everytime they visit the site
   function checkLogin() {
-    localStorage.length == 1 ? setLogin(true) : setLogin(false);
+    localStorage.getItem("username") !== null
+      ? setLogin(true)
+      : setLogin(false);
   }
 
   function setDimension() {
     setWidth(window.innerWidth);
   }
+
+  function logout() {
+    localStorage.removeItem("username");
+    window.location.reload();
+  }
+
+  const deleteUser = async () => {
+    axios
+      .post("http://localhost:8080/deleteUser", {
+        username: localStorage.getItem("username"),
+      })
+      .then((resp) => {
+        resp.data == true
+          ? localStorage.removeItem("username") && window.location.reload()
+          : alert("User could not be deleted, sorry");
+      });
+  };
 
   useEffect(() => {
     setActive(pathname);
@@ -96,8 +116,8 @@ function Navbar() {
                 marginTop: "10px",
               }}
             >
-              <a>Log out</a>
-              <a>Delete User</a>
+              <a onClick={() => logout()}>Log out</a>
+              <a onClick={() => deleteUser()}>Delete</a>
             </div>
           </div>
         ) : (
