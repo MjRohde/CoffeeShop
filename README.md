@@ -6,6 +6,10 @@ Future plans for the website is to implement an individual page for products to 
 
 This website also uses a Java-backend, that will need a bit more polishing before publishing. The backend is a REST API initialized with Spring boot. 
 
+## Images
+
+The images in this project is not perfect...yet. Will update images when the remaining pages are done. 
+
 # Current Layout
 ## HomePage
 ![Alt text](/src/Images/HomePageHeader.png/?raw=true "Homepage header")
