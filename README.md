@@ -22,7 +22,7 @@ This website also uses a Java-backend, that will need a bit more polishing befor
 
 ## Product & cart
 
-![Alt text](/src/Images/Product&CartPage.gif/?raw=true "Products")
+![Alt text](/src/Images/Product&Cart.gif/?raw=true "Products")
 
 
 
