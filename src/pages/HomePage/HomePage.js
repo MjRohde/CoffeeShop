@@ -103,13 +103,13 @@ function HomePage() {
           <HorizontalInfo
             title="Coffee type"
             infoTitle="What is your favorite?"
-            text="Everyone has their favorite brand of coffee, and wheter you like nespresso, evergood or any other brand, you choose which brand is used when you order a coffee"
+            text="Everyone has their favorite brand of coffee, and whether you like nespresso, evergood or any other brand, you choose which brand is used when you order a coffee"
           />
         ) : (
           <Verticalinfo
             title="Coffee type"
             infoTitle="What is your favorite?"
-            text="Everyone has their favorite brand of coffee, and wheter you like nespresso, evergood or any other brand, you choose which brand is used when you order a coffee"
+            text="Everyone has their favorite brand of coffee, and whether you like nespresso, evergood or any other brand, you choose which brand is used when you order a coffee"
           />
         )}
       </section>

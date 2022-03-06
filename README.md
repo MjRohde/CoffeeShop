@@ -9,5 +9,8 @@ This website also uses a Java-backend, that will need a bit more polishing befor
 # Current Layout
 ## HomePage
 ![Alt text](/src/Images/HomePageHeader.png/?raw=true "Homepage header")
+### Company information 
 ![Alt text](/src/Images/HomePageInformation.gif/?raw=true "Homepage Production info")
+### Popular Products
+![Alt text](/src/Images/PopularProducts.gif/?raw=true "Homepage Production info")
 
