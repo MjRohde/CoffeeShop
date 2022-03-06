@@ -12,5 +12,17 @@ This website also uses a Java-backend, that will need a bit more polishing befor
 ### Company information 
 ![Alt text](/src/Images/HomePageInformation.gif/?raw=true "Homepage Production info")
 ### Popular Products
-![Alt text](/src/Images/PopularProducts.gif/?raw=true "Homepage Production info")
+![Alt text](/src/Images/PopularProducts.gif/?raw=true "Popular Products")
+### What is your favorite?
+![Alt text](/src/Images/ChoiceOfCoffeeBeans.png/?raw=true "Customers choice")
+
+## Products
+
+![Alt text](/src/Images/Products.png/?raw=true "Products")
+
+## Product & cart
+
+![Alt text](/src/Images/Product&CartPage.gif/?raw=true "Products")
+
+
 

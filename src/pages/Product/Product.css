@@ -30,7 +30,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #777;
+  background: #040404;
+  border-top: 1px solid white;
+  color: white;
   transition: 0.8s;
   z-index: 3;
   display: flex;
@@ -49,8 +51,7 @@
   width: 100%;
   min-height: 10vh;
   max-height: 20vh;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  border-bottom: 1px solid white;
   display: flex;
 }
 
@@ -69,7 +70,7 @@
   width: 80%;
   margin: auto;
   justify-content: center;
-  min-height: 50vh;
+  min-height: 40vh;
 }
 .prodInfoParts {
   flex: 0.5;
@@ -100,4 +101,24 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
+}
+
+.prodInfoButton {
+  padding: 30px 10px;
+}
+
+.buttonProd {
+  border: 2px solid white;
+  border-radius: 30px;
+  background: transparent;
+  padding: 10px 15px;
+  color: white;
+}
+
+.buttonProd:hover {
+  background: white;
+  color: black;
+}
+.buttonProd:active {
+  padding: 5px 10px;
 }

@@ -5,6 +5,7 @@ import axios from "axios";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Draggable from "react-draggable";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Product() {
   const [product, setProduct] = useState({});
@@ -69,9 +70,17 @@ function Product() {
       coffeeType: type,
       size: size,
       quantity: quantity,
-      price: product.price,
+      price: product.price * quantity,
     };
     setCartItem([...cartItem, item]);
+  }
+
+  function deleteCartItem(productName) {
+    let items = localStorage.getItem("cart");
+    let element = items.split(",");
+    var index = element.indexOf(productName);
+    element.splice(index);
+    console.log(localStorage.getItem("cart"));
   }
 
   function useLocalStorage(key, initialValue) {
@@ -112,12 +121,13 @@ function Product() {
     mouseIsDown();
     loadTypes();
   }, []);
+
   return (
     <div className="productContainer">
       <header
         className="productImage"
         style={{
-          backgroundImage: `linear-gradient(rgba(29, 38, 113, 0.7), rgba(195, 55, 100, 0.7)), url(${product.image})`,
+          backgroundImage: `linear-gradient(40deg, rgba(106,151,140,0.6) 40%, rgba(140, 100, 104, 0.6), rgba(152, 126, 103, 0.6)), url(${product.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
         }}
@@ -148,7 +158,7 @@ function Product() {
 
           {cartItem.map((item) => {
             return (
-              <div className="cartItem">
+              <div className="cartItem" key={item.id}>
                 <span>
                   <img src={item.image} />
                 </span>
@@ -157,7 +167,16 @@ function Product() {
                 <span>{item.coffeeType}</span>
                 <span>{item.size}</span>
                 <span>{item.quantity}</span>
-                <span>{item.price}</span>
+                <span>
+                  {item.price}
+                  <DeleteIcon
+                    fontSize="large"
+                    style={{
+                      marginLeft: "20px",
+                    }}
+                    onClick={() => deleteCartItem(item.product)}
+                  />
+                </span>
               </div>
             );
           })}
@@ -215,9 +234,11 @@ function Product() {
             </select>
           </div>
         </span>
-        <div className="prodInfoButton">
-          <button onClick={() => addToCart()}>Add to Cart</button>
-        </div>
+      </div>
+      <div className="prodInfoButton">
+        <button className="buttonProd" onClick={() => addToCart()}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );
