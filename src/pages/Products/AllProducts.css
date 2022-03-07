@@ -129,7 +129,7 @@ input[type="checkbox"]:checked {
 
 @media all and (max-width: 699px) {
   .selection {
-    z-index: 1000;
+    z-index: 800;
     position: fixed;
     width: 100%;
     min-height: fit-content;
@@ -140,22 +140,25 @@ input[type="checkbox"]:checked {
   }
   .filterOptions {
     position: fixed;
-    bottom: 5%;
+    bottom: 5.1%;
   }
   .filter {
     position: fixed;
     bottom: 0;
-    z-index: 1000;
+    width: 100vw;
+    z-index: 800;
   }
 
   .filterButton {
-    background-color: white;
+    background-color: #040404;
     display: flex;
     align-items: center;
   }
 
   .filterButton > h3 {
-    color: black;
+    color: white;
+    margin-top: 5px;
+    margin-left: 10px;
   }
 
   .coffees {

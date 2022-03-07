@@ -122,3 +122,16 @@
 .buttonProd:active {
   padding: 5px 10px;
 }
+
+@media all and (max-width: 699px) {
+  .prodInfo {
+    flex-direction: column;
+  }
+  .productImage {
+    height: 70vh;
+    align-items: start;
+  }
+  .productImage > h1 {
+    margin-top: 50px;
+  }
+}
