@@ -47,6 +47,7 @@ function Product() {
       const mouseUpTime = new Date().getTime(),
         timeDifference = mouseUpTime - mouseDownTime;
       timeDifference < 300 ? setClick(true) : setClick(false);
+      console.log("Time", timeDifference);
     });
 
     sc.removeEventListener("mousedown", () => {
@@ -57,7 +58,6 @@ function Product() {
       const mouseUpTime = new Date().getTime(),
         timeDifference = mouseUpTime - mouseDownTime;
       timeDifference < 300 ? setClick(true) : setClick(false);
-      console.log(timeDifference);
     });
   }
 
@@ -137,7 +137,11 @@ function Product() {
       <div className="productDetails"></div>
       {/**Creates a draggable element in case it is in the way of any content the user want to see. */}
       <Draggable>
-        <div className="shoppingCart" id="shoppingCart">
+        <div
+          className="shoppingCart"
+          id="shoppingCart"
+          data-testid="shoppingCart"
+        >
           <ShoppingCartIcon
             fontSize="large"
             style={{ color: "white" }}
