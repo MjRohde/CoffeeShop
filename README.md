@@ -35,13 +35,13 @@ The images in this project is not perfect...yet. Will update images when the rem
 ![Alt text](/src/Images/Navbar_Mobile.gif/?raw=true "Navbar")
 
 ### Popular Products
-![Alt text](/src/Images/PopProductsMobile.gif/?raw=true "Navbar")
+![Alt text](/src/Images/PopProductsMobile.gif/?raw=true "Popular products mobile")
 
 ## Product
-![Alt text](/src/Images/PopProductsMobile.gif/?raw=true "Navbar")
+![Alt text](/src/Images/ProductsFilter&Search.gif/?raw=true "Filter & Search")
 
-### Filter & Search
-![Alt text](/src/Images/ProductsFilter&Search.gif/?raw=true "Navbar")
+## Progression
+More Images and gifs will be added as the progression moves along.
 
 
 
