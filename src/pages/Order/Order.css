@@ -1,0 +1,28 @@
+.orderContainer {
+  width: 100vw;
+  min-height: 100vh;
+  background: #040404;
+  color: white;
+}
+
+.cartItem {
+  width: 80vw;
+  margin: auto;
+}
+
+#checkOutButton {
+  margin: 20px 0;
+  border: 2px solid white;
+  background: transparent;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+#checkOutButton:hover {
+  background: white;
+  color: black;
+}
+
+#checkOutButton:active {
+  padding: 5px 15px;
+}

@@ -13,6 +13,7 @@ function Navbar() {
   const [hover, setHover] = useState(false);
   const [login, setLogin] = useState(false);
   const [display, setDisplay] = useState(false);
+  const [orderLength, setOrderLength] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
 
   let pathname = window.location.pathname;
@@ -60,6 +61,13 @@ function Navbar() {
     return () => window.removeEventListener("resize", setDimension);
   }, [width]);
 
+  useEffect(() => {
+    if (localStorage.getItem("cart") !== null) {
+      let length = JSON.parse(localStorage.getItem("cart")).length;
+      setOrderLength(length);
+    }
+  }, [orderLength]);
+
   return (
     <div>
       {width < 1000 ? (
@@ -99,8 +107,8 @@ function Navbar() {
         >
           Products
         </a>
-        <a href="/" className={active === "/order" ? "active" : null}>
-          Order
+        <a href="/orders" className={active === "/order" ? "active" : null}>
+          Order {"(" + orderLength + ")"}
         </a>
         {login ? (
           <div>

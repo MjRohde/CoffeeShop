@@ -64,13 +64,13 @@ function Product() {
   function addToCart() {
     let item = {
       id: product.id,
-      product: product.name,
+      name: product.name,
       type: product.type,
       image: product.image,
       coffeeType: type,
       size: size,
       quantity: quantity,
-      price: product.price * quantity,
+      priceInCents: product.price * 100,
     };
     setCartItem([...cartItem, item]);
   }
@@ -117,6 +117,7 @@ function Product() {
   }
 
   useEffect(() => {
+    //localStorage.removeItem("cart");
     loadProduct(name);
     mouseIsDown();
     loadTypes();
@@ -167,12 +168,12 @@ function Product() {
                   <img src={item.image} />
                 </span>
                 <span>{item.type}</span>
-                <span>{item.product}</span>
+                <span>{item.name}</span>
                 <span>{item.coffeeType}</span>
                 <span>{item.size}</span>
                 <span>{item.quantity}</span>
                 <span>
-                  {item.price}
+                  {item.price} {" x" + item.quantity}
                   <DeleteIcon
                     fontSize="large"
                     style={{

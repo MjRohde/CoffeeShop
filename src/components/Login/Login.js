@@ -60,8 +60,8 @@ function Login({ isOpen, handleClose }) {
   };
 
   function closeLogin() {
-    console.log(isOpen);
     handleClose(false);
+    setLogin(true);
   }
 
   return (
