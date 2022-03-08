@@ -1,4 +1,10 @@
 const buttonCheckout = document.getElementById("checkOutButton");
+const data = JSON.parse(localStorage.getItem("cart"));
+let array = [];
+for (let i = 0; i < data.length; i++) {
+  array.push({ id: i, quantity: data[i].quantity });
+}
+console.log(array);
 if (buttonCheckout) {
   buttonCheckout.addEventListener("click", (e) => {
     console.log(e.type);
@@ -8,7 +14,7 @@ if (buttonCheckout) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        items: [{ id: 0, quantity: 3 }],
+        items: array,
       }),
     })
       .then((res) => {
