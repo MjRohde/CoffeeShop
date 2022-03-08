@@ -28,6 +28,7 @@ function AllProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [prodPerPage, setProdPerPage] = useState(9);
 
+  /* Gets all the products from the database when loading page */
   const getProducts = async () => {
     setLoading(true);
     const res = await axios.get("http://localhost:8080/allProducts");
@@ -36,17 +37,21 @@ function AllProducts() {
     setLoading(false);
   };
 
+  /* Gets all the distinct prices from the database */
   function getPrices() {
     axios.get("http://localhost:8080/getPrices").then((res) => {
       setPrices(res.data);
     });
   }
 
+  /* Gets all the distinct names from the postgresql database */
   function getUniqueNames() {
     axios.get("http://localhost:8080/uniqueNames").then((res) => {
       setUNames(res.data);
     });
   }
+
+  /* Filters all products based on type of the products. */
   function filterProducts(checkBox, checkBoxValue) {
     if (checkBox === true) {
       const tempFilteredProds = products.filter((product) => {
@@ -58,6 +63,7 @@ function AllProducts() {
     }
   }
 
+  /* Filters all products on either the type or the name of the products. */
   function searchFilterProducts(searchEntry) {
     const tempFilteredProds = products.filter((product) => {
       return (
@@ -68,6 +74,8 @@ function AllProducts() {
     setFilterProd(tempFilteredProds);
   }
 
+  /* Filters products by price, right now this only works when checking one checkbox at a time. 
+    A very likely further development would be to allow multiple checkboxes to be checked*/
   function filterByPrice(checkBox, checkBoxValue) {
     if (checkBox === true) {
       const tempFilteredProds = products.filter((product) => {
@@ -79,6 +87,7 @@ function AllProducts() {
     }
   }
 
+  /* Allows user to navigate the pages on the screen */
   function paginate(pageNumber) {
     setCurrentPage(pageNumber);
   }
@@ -95,6 +104,7 @@ function AllProducts() {
     filterProd.length > 0
       ? filterProd.slice(indexOfFirstProduct, indexOfLastProduct)
       : products.slice(indexOfFirstProduct, indexOfLastProduct);
+
   return (
     <div>
       <section className="allCoffees">

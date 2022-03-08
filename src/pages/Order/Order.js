@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Order.css";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-import CloseIcon from "@mui/icons-material/Close";
+import useLocalStorage from "../../components/useLocalStorage/useLocalStorage";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Order() {
   const [cartItem, setCartItem] = useLocalStorage("cart", []);
   const [local, setLocal] = useState([]);
 
+  /* Sends the localStorage cart items to the express server. This is not the secure way to do it, since the price
+    is stored in the client and sent to the server, but it works for this little project*/
   const sendLocal = async () => {
     setLocal(JSON.parse(localStorage.getItem("cart")));
     await axios
@@ -19,39 +21,6 @@ function Order() {
         console.log(res.data);
       });
   };
-
-  function useLocalStorage(key, initialValue) {
-    const [storedValue, setStoredValue] = useState(() => {
-      if (typeof window === undefined) {
-        return initialValue;
-      }
-
-      try {
-        const item = window.localStorage.getItem(key);
-
-        return item ? JSON.parse(item) : initialValue;
-      } catch (error) {
-        console.log(error);
-        return initialValue;
-      }
-    });
-
-    const setValue = (value) => {
-      try {
-        const valueToStore =
-          value instanceof Function ? value(storedValue) : value;
-
-        setStoredValue(valueToStore);
-
-        if (typeof window !== "undefined") {
-          window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    return [storedValue, setValue];
-  }
 
   useEffect(() => {
     sendLocal();

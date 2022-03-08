@@ -10,7 +10,6 @@ function HomePage() {
   const [popCoffee, setPopCoffee] = useState([]);
   const [animation, setAnimation] = useState({
     info: false,
-    popular: false,
   });
   const [mobile, setMobile] = useState(false);
 

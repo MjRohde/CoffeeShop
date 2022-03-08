@@ -6,6 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Draggable from "react-draggable";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
+import useLocalStorage from "../../components/useLocalStorage/useLocalStorage";
 
 function Product() {
   const [product, setProduct] = useState({});
@@ -17,6 +18,7 @@ function Product() {
   const [type, setType] = useState("Coffee Bros.,Medium Roast");
   const [size, setSize] = useState("Small");
   const [quantity, setQuantity] = useState("1");
+
   //Uses the url parameter to get the name of the product that should be displayed.
   let { name } = useParams();
 
@@ -27,6 +29,7 @@ function Product() {
     });
   };
 
+  //Loads the different types of coffeebeans that can be chosen by the user
   const loadTypes = async () => {
     axios.get("http://localhost:8080/allCoffeeTypes").then((response) => {
       setCoffeeTypes(response.data);
@@ -61,6 +64,7 @@ function Product() {
     });
   }
 
+  /** Adds the product to the cart items hook, to later be added in localStorage */
   function addToCart() {
     let item = {
       id: product.id,
@@ -70,11 +74,13 @@ function Product() {
       coffeeType: type,
       size: size,
       quantity: quantity,
+      //The price is converted to cents in order to make it work with stripe.js
       priceInCents: product.price * 100,
     };
     setCartItem([...cartItem, item]);
   }
 
+  //Deletes an item from the cart in localStorage
   function deleteCartItem(productName) {
     let items = localStorage.getItem("cart");
     let element = items.split(",");
@@ -83,41 +89,7 @@ function Product() {
     console.log(localStorage.getItem("cart"));
   }
 
-  function useLocalStorage(key, initialValue) {
-    const [storedValue, setStoredValue] = useState(() => {
-      if (typeof window === undefined) {
-        return initialValue;
-      }
-
-      try {
-        const item = window.localStorage.getItem(key);
-
-        return item ? JSON.parse(item) : initialValue;
-      } catch (error) {
-        console.log(error);
-        return initialValue;
-      }
-    });
-
-    const setValue = (value) => {
-      try {
-        const valueToStore =
-          value instanceof Function ? value(storedValue) : value;
-
-        setStoredValue(valueToStore);
-
-        if (typeof window !== "undefined") {
-          window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    return [storedValue, setValue];
-  }
-
   useEffect(() => {
-    //localStorage.removeItem("cart");
     loadProduct(name);
     mouseIsDown();
     loadTypes();

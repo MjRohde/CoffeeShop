@@ -42,6 +42,7 @@ function Login({ isOpen, handleClose }) {
     });
   };
 
+  /* Adds a user to the database */
   const addUser = async () => {
     let user = {
       username: username,
@@ -59,6 +60,8 @@ function Login({ isOpen, handleClose }) {
       : alert("Passwords must match");
   };
 
+  /* When user clicks the close button, the login popup will close and reset login to true, so the next time
+  the popup is opened, the login screen is visible, not the register new user*/
   function closeLogin() {
     handleClose(false);
     setLogin(true);
@@ -106,6 +109,7 @@ function Login({ isOpen, handleClose }) {
           </div>
         ) : (
           <div className="loginContainer">
+            {/** Register new user, replaces login when user clicks the register button*/}
             <div className="relativeContainer">
               <CloseIcon
                 style={{
