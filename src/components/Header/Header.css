@@ -137,7 +137,7 @@
   }
 }
 
-@media all and (min-width: 700px) and (max-width: 1000px) {
+@media all and (min-width: 700px) and (max-width: 1024px) {
   .headerLeftText > span {
     display: block;
   }
@@ -152,5 +152,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .headerLeftButton > a {
+    margin: 0 10px;
   }
 }

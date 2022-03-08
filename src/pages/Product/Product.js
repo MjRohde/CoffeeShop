@@ -185,6 +185,17 @@ function Product() {
               </div>
             );
           })}
+          <a
+            href="/orders"
+            className="buttonProd"
+            style={{
+              width: "fit-content",
+              margin: "auto",
+              textDecoration: "none",
+            }}
+          >
+            Go To Cart
+          </a>
         </div>
       )}
       <div className="prodInfo">

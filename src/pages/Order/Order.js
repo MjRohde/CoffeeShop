@@ -9,15 +9,16 @@ function Order() {
   const [cartItem, setCartItem] = useLocalStorage("cart", []);
   const [local, setLocal] = useState([]);
 
-  function sendLocal() {
-    axios
+  const sendLocal = async () => {
+    setLocal(JSON.parse(localStorage.getItem("cart")));
+    await axios
       .post("http://localhost:3001/send-item-details", {
         local,
       })
       .then((res) => {
         console.log(res.data);
       });
-  }
+  };
 
   function useLocalStorage(key, initialValue) {
     const [storedValue, setStoredValue] = useState(() => {
@@ -53,7 +54,7 @@ function Order() {
   }
 
   useEffect(() => {
-    setLocal(JSON.parse(localStorage.getItem("cart")));
+    sendLocal();
   }, []);
 
   return (
@@ -89,7 +90,6 @@ function Order() {
           );
         })}
       </div>
-      <button onClick={() => sendLocal()}>Test</button>
       <button id="checkOutButton">Checkout</button>
     </div>
   );
