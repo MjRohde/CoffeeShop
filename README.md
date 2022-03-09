@@ -12,33 +12,33 @@ The images in this project is not perfect...yet. Will update images when the rem
 
 # Current Layout
 ## HomePage
-![Alt text](/src/Images/HomePageHeader.png/?raw=true "Homepage header")
+![Alt text](/src/Images/GithubScreenShots/HomePageHeader.png/?raw=true "Homepage header")
 
 ### Company information 
-![Alt text](/src/Images/HomePageInformation.gif/?raw=true "Homepage Production info")
+![Alt text](/src/Images/GithubScreenShots/HomePageInformation.gif/?raw=true "Homepage Production info")
 
 ### Popular Products
-![Alt text](/src/Images/PopularProducts.gif/?raw=true "Popular Products")
+![Alt text](/src/Images/GithubScreenShots/PopularProducts.gif/?raw=true "Popular Products")
 
 ### What is your favorite?
-![Alt text](/src/Images/ChoiceOfCoffeeBeans.png/?raw=true "Customers choice")
+![Alt text](/src/Images/GithubScreenShots/ChoiceOfCoffeeBeans.png/?raw=true "Customers choice")
 
 ## Products
-![Alt text](/src/Images/Products.png/?raw=true "Products")
+![Alt text](/src/Images/GithubScreenShots/Products.png/?raw=true "Products")
 
 ## Product & cart
-![Alt text](/src/Images/Product&Cart.gif/?raw=true "Products")
+![Alt text](/src/Images/GithubScreenShots/Product&Cart.gif/?raw=true "Products")
 
 # Mobile
 ## HomePage
 ### Navbar
-![Alt text](/src/Images/Navbar_Mobile.gif/?raw=true "Navbar")
+![Alt text](/src/Images/GithubScreenShots/Navbar_Mobile.gif/?raw=true "Navbar")
 
 ### Popular Products
-![Alt text](/src/Images/PopProductsMobile.gif/?raw=true "Popular products mobile")
+![Alt text](/src/Images/GithubScreenShots/PopProductsMobile.gif/?raw=true "Popular products mobile")
 
 ## Product
-![Alt text](/src/Images/ProductsFilter&Search.gif/?raw=true "Filter & Search")
+![Alt text](/src/Images/GithubScreenShots/ProductsFilter&Search.gif/?raw=true "Filter & Search")
 
 ## Progression
 More Images and gifs will be added as the progression moves along.

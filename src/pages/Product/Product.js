@@ -105,7 +105,7 @@ function Product() {
           backgroundPosition: "center center",
         }}
       >
-        <h1>{product.name}</h1>
+        <h1 data-testid="headerh1">{product.name}</h1>
       </header>
       <div className="productDetails"></div>
       {/**Creates a draggable element in case it is in the way of any content the user want to see. */}
@@ -116,6 +116,7 @@ function Product() {
           data-testid="shoppingCart"
         >
           <ShoppingCartIcon
+            data-testid="sCart"
             fontSize="large"
             style={{ color: "white" }}
             onClick={() => setShoppingVisible(!shoppingVisible)}
@@ -125,6 +126,7 @@ function Product() {
       {click && (
         <div
           className="shoppingCartContainer"
+          data-testid="shoppingCart"
           style={{ height: shoppingVisible ? "90vh" : "0", width: "100vw" }}
         >
           <CloseIcon
@@ -200,10 +202,11 @@ function Product() {
             <select
               className="select size"
               onChange={(e) => setSize(e.target.value)}
+              data-testid="size"
             >
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Big</option>
+              <option data-testid="sizeOption">Small</option>
+              <option data-testid="sizeOption">Medium</option>
+              <option data-testid="sizeOption">Big</option>
             </select>
           </div>
           <div className="prodInfoSelect">
